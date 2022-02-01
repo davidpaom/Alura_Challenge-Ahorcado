@@ -1,19 +1,38 @@
+
+
 body {
     background-color: white;
 }
 
-.title1 {
+div {
+    text-align: center;
+}
+
+
+.texttobutton{
     text-align: center;
     font-family: 'Gloria Hallelujah', cursive;
     opacity: 1;
     color: white;
+
+    position: relative;
+    font-size: 100%;  
 }
+
+    .title1 {
+        text-align: center;
+        font-family: 'Gloria Hallelujah', cursive;
+        opacity: 1;
+        color: white;
+        font-size: 150%;
+    }
+
+
 
 .centro {
     position: absolute;
     width: 100%;
     height: 100%;
-
     }
 
 .main {
@@ -26,13 +45,14 @@ body {
 .autoLayout {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    
+
+    text-align: center;
+
     position: absolute;
     top: 10%;
-    left: 40%;
-    width: 20%;
+    left: 30%;
+    width: 40%;
+    height: 50%;
     }
 
 .autoLayout1 {
@@ -40,6 +60,8 @@ body {
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
+
+    text-align: center;
     
     position: absolute;
     width: 20%;
@@ -50,20 +72,23 @@ body {
 
 
     .button {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      padding: 24px;
-      
-      position: relative;
-      width: 100%;
-      height: 100%;
-      left: 0px;
-      top: 0px;
-      background: #0A3871;
-      border-radius: 24px;
-      flex: none;
-      order: 0;
-      flex-grow: 0;
-      margin: 0px 24px;
-      }
+        position: relative;
+        left: 10%;
+        width: 80%;
+        height: 10%;
+        text-align: center;
+        
+        background-color: brown;
+       
+        border-radius: 24px;
+    }
+
+    .textArea{
+        position: relative;
+        width: 100%;
+        height: 20%;
+        font-family: 'Gloria Hallelujah', cursive;
+        opacity: 0.5;
+        text-align: center;
+        font-size: 100%;
+    }
