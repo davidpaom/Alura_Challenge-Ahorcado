@@ -199,3 +199,18 @@ div {
     width: 10%;
     height: 15%;
 }
+
+.layGanarPerder {
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+
+    font-size: 250%;
+
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    width: 10%;
+    height: 15%;
+}

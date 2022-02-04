@@ -14,6 +14,7 @@ var teclear = document.getElementById("entrada")
 var palabra = document.getElementById("palabra")
 var lineas = document.getElementById("lineas")
 var oprimir = document.getElementById("oprimir")
+var ganarPerder = document.getElementById("ganarPerder")
 //Declaración de arreglo con las palabras
 var palabras = ["ALURA", "ORACLE", "CHALLENGE"]
 //Declaracion del arreglo de letras totales del alfabeto.
@@ -61,6 +62,10 @@ function validacion(letra){
     }
     randomWordHidden = randomWordHiddenArray.join("")
     palabra.textContent = randomWordHidden
+    console.log(correctas)
+    if(correctas==randomWordArray.length){
+        ganarPerder.textContent = "FELICIDADES, GANASTE"
+    }
 }
 
 //funcion para tomar el valor de la tecla presionada, checar si es una letra del alfabeto y si no mostrar un mensaje. También imprime en el html
