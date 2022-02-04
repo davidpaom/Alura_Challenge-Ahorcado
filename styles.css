@@ -33,13 +33,21 @@ div {
     font-size: 100%;  
 }
 
-    .title1 {
+.title1 {
         text-align: center;
         font-family: 'Gloria Hallelujah', cursive;
         opacity: 1;
         color: white;
         font-size: 150%;
-    }
+}
+
+.title2 {
+    text-align: center;
+    font-family: 'Arial', cursive;
+    opacity: 1;
+    color: white;
+    font-size: 150%;
+}
 
 
 
@@ -47,7 +55,7 @@ div {
     position: absolute;
     width: 100%;
     height: 100%;
-    }
+}
 
 .main {
      width: 80vw;
@@ -67,7 +75,7 @@ div {
     left: 30%;
     width: 40%;
     height: 50%;
-    }
+}
 
 .autoLayout1 {
     display: flex;
@@ -128,10 +136,10 @@ div {
     
         text-align: center;
     
-        font-size: 300%;
+        font-size: 260%;
     
         position: absolute;
-        top: 63%;
+        top: 67%;
         left: 10%;
         width: 80%;
         height: 5%;

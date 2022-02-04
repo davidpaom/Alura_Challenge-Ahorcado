@@ -21,6 +21,8 @@ var alfabeto = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
 var randomWord = ""
 var randomWordArray = []
 var numeroDeLetras = 0;
+var randomWordHidden = ""
+var randomWordHiddenArray = []
 var guiones = ""
 var tecla = 0;
 //Esconder imagenes del ahorcado.
@@ -30,6 +32,7 @@ ahorcado4.style.visibility = "hidden";
 ahorcado3.style.visibility = "hidden";
 ahorcado2.style.visibility = "hidden";
 ahorcado1.style.visibility = "hidden";
+
 //Función para sacar una palabara aleatoramente y contar el numero de letras en la palabra, generando el string de guiones
 function aleatorio () {
     let largo = palabras.length //Encontrar el tamaño del arreglo de palabras
@@ -41,8 +44,10 @@ function aleatorio () {
     //For para escribir guiones en el arreglo.
     for(let x=0; x<randomWordArray.length;x++){
         guionesArray.push("-")
+        randomWordHiddenArray.push("~")
     }
-    guiones = guionesArray.join("") //Convertir el arreglo de guiones en String para imprimirlos debajo de la palabra.
+    guiones = guionesArray.join(" ") //Convertir el arreglo de guiones en String para imprimirlos debajo de la palabra.
+    randomWordHidden = randomWordHiddenArray.join("")
 }
 
 //funcion para tomar el valor de la tecla presionada, checar si es una letra del alfabeto y si no mostrar un mensaje. También imprime en el html
@@ -70,6 +75,7 @@ function imprimir (e){
     }
 }
 
+//funcion para enfocarse siempre en la entrada que recibe las letras.
 function focus(){
     entrada.focus()
 }
@@ -84,7 +90,7 @@ entrada.addEventListener('keypress',imprimir) //Llamada a la función cada vez q
 
 setInterval(focus,1) //Llamada a la función para enfocarse en nuestro input que recibirá las letras.
 
-palabra.textContent = randomWord
+palabra.textContent = randomWordHidden
 
 
 
