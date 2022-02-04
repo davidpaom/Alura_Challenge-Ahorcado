@@ -19,6 +19,8 @@ var ganarPerder = document.getElementById("ganarPerder")
 var palabras = ["ALURA", "ORACLE", "CHALLENGE"]
 //Declaracion del arreglo de letras totales del alfabeto.
 var alfabeto = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","Ñ"]
+var ahorcadoImages = [ahorcado0,ahorcado1,ahorcado2,ahorcado3,ahorcado4,ahorcado5,ahorcado6]
+var arregloErrores = []
 var randomWord = ""
 var randomWordArray = []
 var numeroDeLetras = 0;
@@ -27,6 +29,12 @@ var randomWordHiddenArray = []
 var guiones = ""
 var tecla = ""
 var correctas = 0
+var errores = 0
+var adivina = false
+var errorActivado = false
+var letraAlready = false
+var letraError = ""
+var letter = ""
 //Esconder imagenes del ahorcado.
 ahorcado6.style.visibility = "hidden";
 ahorcado5.style.visibility = "hidden";
@@ -52,14 +60,44 @@ function aleatorio () {
     randomWordHidden = randomWordHiddenArray.join("")
 }
 
-function validacion(letra){
-    let letter = letra
-    for(let x = 0 ; x < randomWordArray.length ; x++){
-        if(letter==randomWordArray[x]){
-            randomWordHiddenArray[x] = letter
-            correctas = correctas + 1
+function error(letraError){
+    letraError = letter
+    for (let x = 0; x<arregloErrores.length; x++){
+        if(arregloErrores[x]==letraError){
+            errorActivado = true
         }
     }
+    if(errorActivado==false){
+        arregloErrores.push(letraError)
+        errores = errores+1
+    }
+    ahorcadoImages[errores].style.visibility = "visible"
+    if(errores==6){
+        ganarPerder.textContent = "Perdiste, la palabra era: " + randomWord
+    }
+    console.log(errores)
+    console.log(arregloErrores)
+}
+
+function validacion(letra){
+    letter = letra
+    for(let x = 0; x<randomWordArray.length; x++){
+        if(letter==randomWordHiddenArray[x]){
+            letraAlready = true
+        } 
+    }
+
+    if(letraAlready == false){
+        for(let x = 0 ; x < randomWordArray.length ; x++){
+            if(letter==randomWordArray[x]){
+                randomWordHiddenArray[x] = letter
+                correctas ++
+            } 
+        }
+    }
+
+    letraAlready = false
+    
     randomWordHidden = randomWordHiddenArray.join("")
     palabra.textContent = randomWordHidden
     console.log(correctas)
