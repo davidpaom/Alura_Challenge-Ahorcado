@@ -24,7 +24,8 @@ var numeroDeLetras = 0;
 var randomWordHidden = ""
 var randomWordHiddenArray = []
 var guiones = ""
-var tecla = 0;
+var tecla = ""
+var correctas = 0
 //Esconder imagenes del ahorcado.
 ahorcado6.style.visibility = "hidden";
 ahorcado5.style.visibility = "hidden";
@@ -50,6 +51,18 @@ function aleatorio () {
     randomWordHidden = randomWordHiddenArray.join("")
 }
 
+function validacion(letra){
+    let letter = letra
+    for(let x = 0 ; x < randomWordArray.length ; x++){
+        if(letter==randomWordArray[x]){
+            randomWordHiddenArray[x] = letter
+            correctas = correctas + 1
+        }
+    }
+    randomWordHidden = randomWordHiddenArray.join("")
+    palabra.textContent = randomWordHidden
+}
+
 //funcion para tomar el valor de la tecla presionada, checar si es una letra del alfabeto y si no mostrar un mensaje. También imprime en el html
 // la letra para que el usuario la vea.
 function imprimir (e){
@@ -57,19 +70,20 @@ function imprimir (e){
     if((e.which >= 65 && e.which<=90)||(e.which >= 97 && e.which<=122)||e.which==209||e.which==241){
         //If para identificar si es letra del alfabeto maysucula e imprimir el valor del arreglo Alfabeto antes creado. Corresponden a las letras.
         if(e.which >= 65 && e.which<=90){
-            tecla = e.which-65
-            oprimir.textContent = alfabeto[tecla]
+            tecla = alfabeto[e.which-65]
+            oprimir.textContent = tecla
         }
         //If If para identificar si es letra del alfabeto minuscula e imprimir el valor del arreglo Alfabeto antes creado. Corresponden a las letras.
         if(e.which >= 97 && e.which<=122){
-            tecla = e.which-97
-            oprimir.textContent = alfabeto[tecla]
+            tecla = alfabeto[e.which-97]
+            oprimir.textContent = tecla
         }
         //If para identificar si es la letra eñe en mayuscula o minuscula e imprimirla.
         if(e.which==209||e.which==241){
-            tecla = 26
-            oprimir.textContent = alfabeto[tecla]
+            tecla = alfabeto[26]
+            oprimir.textContent = tecla
         }
+        validacion(tecla)
     } else {
         alert("RECUERDA QUE SOLO PUEDES TECLEAR LETRAS")
     }
