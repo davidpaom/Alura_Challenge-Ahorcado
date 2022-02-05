@@ -81,6 +81,7 @@ function errar (letra){
     if(errores==6){
         ganarPerder.textContent = "Perdiste, la palabra era: " + randomWord
         entrada.blur()
+        clearInterval(enfocarse)
     }
 
     //regresar la variable a false
@@ -125,6 +126,7 @@ function acertar(letra){
     if(correctas==randomWordArray.length){
         ganarPerder.textContent = "FELICIDADES, GANASTE"
         entrada.blur()
+        clearInterval(enfocarse)
     }
 }
 
@@ -187,6 +189,6 @@ entrada.focus() //Enfocarse en el input cada que empiece la página
 entrada.addEventListener('keypress',imprimir) //Llamada a la función cada vez que se oprima una tecla. Se checará si la letra es tecla
 //y si está dentro del alfabeto, de otra forma se mostrará una alerta.
 
-setInterval(focus,1) //Llamada a la función para enfocarse en nuestro input que recibirá las letras.
+var enfocarse = setInterval(focus,1) //Llamada a la función para enfocarse en nuestro input que recibirá las letras.
 
 palabra.textContent = randomWordHidden
