@@ -33,8 +33,9 @@ var errores = 0
 var adivina = false
 var errorActivado = false
 var letraAlready = false
-var letraError = ""
+var letraErrorAlready = false
 var letter = ""
+var correcto = false
 //Esconder imagenes del ahorcado.
 ahorcado6.style.visibility = "hidden";
 ahorcado5.style.visibility = "hidden";
@@ -59,36 +60,51 @@ function aleatorio () {
     guiones = guionesArray.join(" ") //Convertir el arreglo de guiones en String para imprimirlos debajo de la palabra.
     randomWordHidden = randomWordHiddenArray.join("")
 }
+//Funcion cuando erras una letra.
+function errar (letra){
+    letter = letra
+    //For para validar si la letra ya está en nuestras letras erradas y no repetirlas.
+    for(let x = 0; x<arregloErrores.length; x++){
+        if(letter==arregloErrores[x]){
+            letraErrorAlready = true //Si la letra ya existe se cambia el valor de la variable letraErrorAlready a verdadero.
+        } 
+    }
+    //If para saber que la letra errada no había sido ya digitada
+    if(letraErrorAlready == false){
+        arregloErrores.push(letter) //Se agrega la letra a nuestro arreglo de errores
+        errores++ //Se incrementa nuestro contador de errores
+    }
 
-function error(letraError){
-    letraError = letter
-    for (let x = 0; x<arregloErrores.length; x++){
-        if(arregloErrores[x]==letraError){
-            errorActivado = true
-        }
-    }
-    if(errorActivado==false){
-        arregloErrores.push(letraError)
-        errores = errores+1
-    }
-    ahorcadoImages[errores].style.visibility = "visible"
+    //If para saber si ya llegamos a los 6 errores y mostrar el mensaje de perdedor
     if(errores==6){
         ganarPerder.textContent = "Perdiste, la palabra era: " + randomWord
     }
+
+    //regresar la variable a false
+    letraErrorAlready = false
+
     console.log(errores)
-    console.log(arregloErrores)
+
+    //Ir mostrando la imagen del ahorcado correspondiente al error.
+    ahorcadoImages[errores].style.visibility = "visible"
 }
 
-function validacion(letra){
+//Función cuando aciertas una letra.
+function acertar(letra){
     letter = letra
+
+    //For para validar si la letra ya existe en el arreglo de letras encontradas.
     for(let x = 0; x<randomWordArray.length; x++){
         if(letter==randomWordHiddenArray[x]){
-            letraAlready = true
+            letraAlready = true //Si la letra ya existe se cambia el valor de la variable letraAlready a verdadero.
         } 
     }
 
+    //Si la letra no existe en las que ya se habían encontrado entonces se hace el barrido.
     if(letraAlready == false){
+            //For para comparar letra por letra.        
         for(let x = 0 ; x < randomWordArray.length ; x++){
+            //If para poner la letra en arreglo y subir nuestro contador de letras correctas
             if(letter==randomWordArray[x]){
                 randomWordHiddenArray[x] = letter
                 correctas ++
@@ -96,14 +112,36 @@ function validacion(letra){
         }
     }
 
+    //regresando la variable a false para que no afecte la funcionalidad.
     letraAlready = false
-    
+
     randomWordHidden = randomWordHiddenArray.join("")
     palabra.textContent = randomWordHidden
-    console.log(correctas)
+    
+    //If para mostrar mensaje de ganador si es que se completa la palabra.
     if(correctas==randomWordArray.length){
         ganarPerder.textContent = "FELICIDADES, GANASTE"
     }
+}
+
+//Función para validar si la letra introducida está o no en la palabra escondida.
+function validacion(letter){
+    letter = letter
+
+    //For para hacer un barrido en toda la palabra y comparar la letra con cada una de las letras de la palabra.
+    for(let x = 0 ; x < randomWordArray.length ; x++){
+        if(letter==randomWordArray[x]){
+            correcto = true //Si coincide se cambia nuestra variable correcto a verdadero,
+        } 
+    }
+
+    //Dependiendo el valor de la variable correcto entra a la función acertar o errar.
+    if(correcto){
+        acertar(letter)
+    } else{
+       errar(letter)
+    }
+    correcto = false
 }
 
 //funcion para tomar el valor de la tecla presionada, checar si es una letra del alfabeto y si no mostrar un mensaje. También imprime en el html
@@ -148,8 +186,3 @@ entrada.addEventListener('keypress',imprimir) //Llamada a la función cada vez q
 setInterval(focus,1) //Llamada a la función para enfocarse en nuestro input que recibirá las letras.
 
 palabra.textContent = randomWordHidden
-
-
-
-
-
