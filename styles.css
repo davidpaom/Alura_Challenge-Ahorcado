@@ -229,3 +229,20 @@ div {
     width: 10%;
     height: 15%;
 }
+
+.logo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    text-align: center;
+    
+    position: relative;
+
+    width: 100px;
+    height: 100px;
+
+    left: 7%;
+    top: 4%;
+}
