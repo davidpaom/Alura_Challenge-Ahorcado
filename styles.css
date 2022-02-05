@@ -214,3 +214,18 @@ div {
     width: 10%;
     height: 15%;
 }
+
+.layErrores {
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+
+    font-size: 150%;
+
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    width: 10%;
+    height: 15%;
+}

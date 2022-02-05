@@ -15,6 +15,7 @@ var palabra = document.getElementById("palabra")
 var lineas = document.getElementById("lineas")
 var oprimir = document.getElementById("oprimir")
 var ganarPerder = document.getElementById("ganarPerder")
+var mostrarErrores = document.getElementById("mostrarErrores")
 //Declaración de arreglo con las palabras
 var palabras = ["ALURA", "ORACLE", "CHALLENGE"]
 //Declaracion del arreglo de letras totales del alfabeto.
@@ -73,11 +74,13 @@ function errar (letra){
     if(letraErrorAlready == false){
         arregloErrores.push(letter) //Se agrega la letra a nuestro arreglo de errores
         errores++ //Se incrementa nuestro contador de errores
+        mostrarErrores.textContent = "ERRORES: " + arregloErrores
     }
 
     //If para saber si ya llegamos a los 6 errores y mostrar el mensaje de perdedor
     if(errores==6){
         ganarPerder.textContent = "Perdiste, la palabra era: " + randomWord
+        entrada.blur()
     }
 
     //regresar la variable a false
@@ -121,6 +124,7 @@ function acertar(letra){
     //If para mostrar mensaje de ganador si es que se completa la palabra.
     if(correctas==randomWordArray.length){
         ganarPerder.textContent = "FELICIDADES, GANASTE"
+        entrada.blur()
     }
 }
 
