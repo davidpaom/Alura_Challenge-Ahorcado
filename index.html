@@ -31,8 +31,8 @@
                     </button>
 
                     <br><br><br><br>
-                            <textarea class="textArea" id = "nuevaPalabra" placeholder="Escriba una nueva palabra." ></textarea>
-                            <button class="button" id="btn_addword">
+                            <textarea onkeyup="this.value = this.value.toUpperCase();" class="textArea" id = "nuevaPalabra" placeholder="Escriba una nueva palabra." ></textarea>
+                            <button onclick="agregandoPalabra()" class="button" id="btn_addword">
                                 <label class="texttobutton">AGREGAR PALABRA</label>
                             </button>
                 </main>

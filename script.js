@@ -182,6 +182,10 @@ function focus(){
     entrada.focus()
 }
 
+function agregandoPalabra(){
+    
+}
+
 
 aleatorio() //Llamada a la función para sortear las palabras, se hace cada vez que empezamos el juego.
 lineas.textContent = guiones //Impresión de los guiones debajo de las palabras.
