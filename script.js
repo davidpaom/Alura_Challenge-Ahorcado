@@ -16,8 +16,9 @@ var lineas = document.getElementById("lineas")
 var oprimir = document.getElementById("oprimir")
 var ganarPerder = document.getElementById("ganarPerder")
 var mostrarErrores = document.getElementById("mostrarErrores")
+var newWord = document.getElementById("nuevaPalabra")
 //Declaración de arreglo con las palabras
-var palabras = ["ALURA", "ORACLE", "CHALLENGE"]
+//var palabras = ["ALURA", "ORACLE", "CHALLENGE"]
 //Declaracion del arreglo de letras totales del alfabeto.
 var alfabeto = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","Ñ"]
 var ahorcadoImages = [ahorcado0,ahorcado1,ahorcado2,ahorcado3,ahorcado4,ahorcado5,ahorcado6]
@@ -47,9 +48,9 @@ ahorcado1.style.visibility = "hidden";
 
 //Función para sacar una palabara aleatoramente y contar el numero de letras en la palabra, generando el string de guiones
 function aleatorio () {
-    let largo = palabras.length //Encontrar el tamaño del arreglo de palabras
+    let largo = arregloPalabras.length //Encontrar el tamaño del arreglo de palabras
     let random = Math.round(Math.random()*(largo-1)) //Sortear la posicion del arreglo de palabras
-    randomWord = palabras[random] //Llamar la palabra previamente sorteada y ubicarla en nuestra variable
+    randomWord = arregloPalabras[random] //Llamar la palabra previamente sorteada y ubicarla en nuestra variable
     randomWordArray = randomWord.split('') //Dividir la palabra aleatoria en un arreglo, letra por letra.
     numeroDeLetras = randomWordArray.length //Contar número de letras para generar nuestro String de guiones
     let guionesArray = [] //Declarar arreglo para escribir los guiones suficientes.
@@ -180,6 +181,7 @@ function imprimir (e){
 function focus(){
     entrada.focus()
 }
+
 
 aleatorio() //Llamada a la función para sortear las palabras, se hace cada vez que empezamos el juego.
 lineas.textContent = guiones //Impresión de los guiones debajo de las palabras.

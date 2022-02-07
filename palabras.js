@@ -1,0 +1,1 @@
+const arregloPalabras = ["ALURA", "ORACLE", "CHALLENGE"]
