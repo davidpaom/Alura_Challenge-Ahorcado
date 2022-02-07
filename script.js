@@ -183,7 +183,53 @@ function focus(){
 }
 
 function agregandoPalabra(){
-    
+    if(newWord.value!=""){
+        let wordArray = newWord.value.split("")
+        console.log(wordArray)
+        let aprobada = false
+        let espacio = false
+        let noLetra = false
+        
+        for(let x = 0; x < wordArray.length ; x++){
+            if((wordArray[x].charCodeAt() >= 65 && wordArray[x].charCodeAt()<=90)|| wordArray[x].charCodeAt()==209){
+                aprobada = true
+                }
+             else {
+                if(wordArray[x].charCodeAt()==32){
+                    espacio=true
+                } else{
+                    noLetra = true
+                } 
+            }
+        }
+
+        if(aprobada==false){
+            if(espacio==true && noLetra == true){
+                alert("RECUERDA USAR SOLO LETRAS Y SIN ESPACIOS")
+            } else{
+                if(espacio==true){
+                    alert("RECUERDA NO USAR ESPACIOS")
+                }
+                if(noLetra==true){
+                    alert("RECUERDA USAR SOLO LETRAS")
+                }
+            }
+        }
+
+        for(let x = 0; x < arregloPalabras.length ; x++){
+            if(newWord.value==arregloPalabras[x]){
+                alert("Esta palabra ya existe")
+            }
+        }
+
+        if(aprobada==true){
+            arregloPalabras.push(newWord.value)
+            console.log(arregloPalabras)
+        }
+
+        } else {
+        alert("ESCRIBE UNA PALABRA")
+        }
 }
 
 
@@ -191,6 +237,7 @@ aleatorio() //Llamada a la función para sortear las palabras, se hace cada vez 
 lineas.textContent = guiones //Impresión de los guiones debajo de las palabras.
 
 entrada.focus() //Enfocarse en el input cada que empiece la página
+console.log(arregloPalabras)
 
 entrada.addEventListener('keypress',imprimir) //Llamada a la función cada vez que se oprima una tecla. Se checará si la letra es tecla
 //y si está dentro del alfabeto, de otra forma se mostrará una alerta.
