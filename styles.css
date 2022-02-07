@@ -246,3 +246,16 @@ div {
     left: 7%;
     top: 4%;
 }
+
+.layoutBotones {
+    display: flex;
+    flex-direction:row;
+
+    text-align: center;
+
+    position: absolute;
+    top: 80%;
+    left: 30%;
+    width: 40%;
+    height: 50%;
+}
