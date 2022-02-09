@@ -38,6 +38,9 @@ var letraAlready = false
 var letraErrorAlready = false
 var letter = ""
 var correcto = false
+var extras = JSON.parse(sessionStorage.getItem("extras"))
+var plus = []
+var arregloPalabrasExtras
 //Esconder imagenes del ahorcado.
 ahorcado6.style.visibility = "hidden";
 ahorcado5.style.visibility = "hidden";
@@ -48,9 +51,10 @@ ahorcado1.style.visibility = "hidden";
 
 //Función para sacar una palabara aleatoramente y contar el numero de letras en la palabra, generando el string de guiones
 function aleatorio () {
-    let largo = arregloPalabras.length //Encontrar el tamaño del arreglo de palabras
-    let random = Math.round(Math.random()*(largo-1)) //Sortear la posicion del arreglo de palabras
-    randomWord = arregloPalabras[random] //Llamar la palabra previamente sorteada y ubicarla en nuestra variable
+    arregloPalabrasExtras = arregloPalabras.concat(extras)
+    let largo = arregloPalabrasExtras.length //Encontrar el tamaño del arreglo de palabras
+    let random = Math.round(Math.random()*(largo-2)) //Sortear la posicion del arreglo de palabras
+    randomWord = arregloPalabrasExtras[random] //Llamar la palabra previamente sorteada y ubicarla en nuestra variable
     randomWordArray = randomWord.split('') //Dividir la palabra aleatoria en un arreglo, letra por letra.
     numeroDeLetras = randomWordArray.length //Contar número de letras para generar nuestro String de guiones
     let guionesArray = [] //Declarar arreglo para escribir los guiones suficientes.
@@ -203,6 +207,7 @@ function agregandoPalabra(){
             }
         }
 
+
         if(aprobada==false){
             if(espacio==true && noLetra == true){
                 alert("RECUERDA USAR SOLO LETRAS Y SIN ESPACIOS")
@@ -216,15 +221,23 @@ function agregandoPalabra(){
             }
         }
 
-        for(let x = 0; x < arregloPalabras.length ; x++){
-            if(newWord.value==arregloPalabras[x]){
+        let arregloPalabrasExtras = arregloPalabras.concat(extras)
+
+        for(let x = 0; x < arregloPalabrasExtras.length ; x++){
+            if(newWord.value==arregloPalabrasExtras[x]){
                 alert("Esta palabra ya existe")
+                aprobada=false
             }
         }
 
         if(aprobada==true){
-            arregloPalabras.push(newWord.value)
-            console.log(arregloPalabras)
+            plus = JSON.parse(sessionStorage.getItem("extras"))
+            let palabra = []
+            console.log(plus)
+            palabra.push(newWord.value)
+            console.log(palabra)
+            plus = palabra.concat(plus)
+            sessionStorage.setItem("extras",JSON.stringify(plus))
         }
 
         } else {
@@ -237,7 +250,7 @@ aleatorio() //Llamada a la función para sortear las palabras, se hace cada vez 
 lineas.textContent = guiones //Impresión de los guiones debajo de las palabras.
 
 entrada.focus() //Enfocarse en el input cada que empiece la página
-console.log(arregloPalabras)
+console.log(arregloPalabrasExtras)
 
 entrada.addEventListener('keypress',imprimir) //Llamada a la función cada vez que se oprima una tecla. Se checará si la letra es tecla
 //y si está dentro del alfabeto, de otra forma se mostrará una alerta.
