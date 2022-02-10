@@ -190,34 +190,35 @@ function agregandoPalabra(){
     if(newWord.value!=""){
         let wordArray = newWord.value.split("")
         console.log(wordArray)
+        console.log(wordArray)
         let aprobada = false
         let espacio = false
         let noLetra = false
         
         for(let x = 0; x < wordArray.length ; x++){
-            if((wordArray[x].charCodeAt() >= 65 && wordArray[x].charCodeAt()<=90)|| wordArray[x].charCodeAt()==209){
-                aprobada = true
+            if((wordArray[x].charCodeAt() >= 65 && wordArray[x].charCodeAt()<=90)|| wordArray[x].charCodeAt()==209 || wordArray[x].charCodeAt()==32){
+                if((wordArray[x].charCodeAt() >= 65 && wordArray[x].charCodeAt()<=90)|| wordArray[x].charCodeAt()==209 ){
+                    aprobada = true
                 }
-             else {
                 if(wordArray[x].charCodeAt()==32){
-                    espacio=true
-                } else{
-                    noLetra = true
-                } 
+                    espacio = true
+                }
+            }else{
+                noLetra = true
             }
         }
 
 
-        if(aprobada==false){
-            if(espacio==true && noLetra == true){
-                alert("RECUERDA USAR SOLO LETRAS Y SIN ESPACIOS")
-            } else{
-                if(espacio==true){
-                    alert("RECUERDA NO USAR ESPACIOS")
-                }
-                if(noLetra==true){
-                    alert("RECUERDA USAR SOLO LETRAS")
-                }
+
+        if(espacio==true || noLetra==true){
+            if(espacio==true && noLetra == false){
+                alert("Recuerda no usar espacios")
+            }
+            if(noLetra==true && espacio == false){
+                alert("Recuerda usar solo letras")
+            }
+            if(espacio==true && noLetra==true){
+                alert("Recuerda usar solo letras sin espacios")
             }
         }
 
@@ -230,7 +231,7 @@ function agregandoPalabra(){
             }
         }
 
-        if(aprobada==true){
+        if(aprobada==true && espacio==false && noLetra == false){
             plus = JSON.parse(sessionStorage.getItem("extras"))
             let palabra = []
             console.log(plus)
