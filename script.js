@@ -212,13 +212,13 @@ function agregandoPalabra(){
 
         if(espacio==true || noLetra==true){
             if(espacio==true && noLetra == false){
-                alert("Recuerda no usar espacios")
+                alert("RECUERDA NO USAR ESPACIOS")
             }
             if(noLetra==true && espacio == false){
-                alert("Recuerda usar solo letras")
+                alert("RECUERDA SOLO USAR LETRAS")
             }
             if(espacio==true && noLetra==true){
-                alert("Recuerda usar solo letras sin espacios")
+                alert("RECUERDA SOLO USAR LETRAS SIN ESPACIOS")
             }
         }
 
@@ -226,7 +226,7 @@ function agregandoPalabra(){
 
         for(let x = 0; x < arregloPalabrasExtras.length ; x++){
             if(newWord.value==arregloPalabrasExtras[x]){
-                alert("Esta palabra ya existe")
+                alert("ESTA PALABRA YA EXISTE")
                 aprobada=false
             }
         }
@@ -239,6 +239,7 @@ function agregandoPalabra(){
             console.log(palabra)
             plus = palabra.concat(plus)
             sessionStorage.setItem("extras",JSON.stringify(plus))
+            alert("LA PALABRA " + newWord.value + " FUE AGREGADA")
         }
 
         } else {
